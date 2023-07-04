@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-between">
+    <div>
+        <label for="category">類別：</label>
+        <select id="category">
+            <option value="家居">家居</option>
+            <option value="交通">交通</option>
+            <option value="休閒">休閒</option>
+            <option value="餐飲">餐飲</option>
+            <option value="其他">其他</option>
+        </select>
+    </div>
+
+    <div id="amount">
+        <h3>總金額： 8787 元</h3>
+    </div>
+</div>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <div class="row">
+            <span class="col-1">類別</span>
+            <span class="col-4">項目</span>
+            <span class="col-2">日期</span>
+            <span class="col-2">金額</span>
+            <span class="col-3">操作</span>
+        </div>
+    </li>
+
+    <li class="list-group-item">
+        <div class="row">
+            <!--類別icon-->
+            <span class="col-1"><i class="fa-solid fa-grin-beam h5"></i></span>
+            <!--項目-->
+            <span class="col-4 lead">GGGG</span>
+            <!--日期-->
+            <span class="col-2">2023/07/07</span>
+            <!--金額-->
+            <span class="col-2 h4 text-info">99</span>
+            <!--操作-->
+            <div class="col-3">
+                <div class="d-flex justify-content-around">
+                    <a class="btn btn-success" href="/records/64a41c924efdd400027c1946/edit">修改</a>
+                    <form action="/records/64a41c924efdd400027c1946?_method=DELETE" method="POST">
+                        <button class="btn btn-danger" type="submit">刪除</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </li>
+
+    <li class="list-group-item">
+        <div class="row">
+            <!--類別icon-->
+            <span class="col-1"><i class="fa-solid fa-grin-beam h5"></i></span>
+            <!--項目-->
+            <span class="col-4 lead">GGGG</span>
+            <!--日期-->
+            <span class="col-2">2023/07/07</span>
+            <!--金額-->
+            <span class="col-2 h4 text-info">99</span>
+            <!--操作-->
+            <div class="col-3">
+                <div class="d-flex justify-content-around">
+                    <a class="btn btn-success" href="/records/64a41c924efdd400027c1946/edit">edit</a>
+                    <form action="/records/64a41c924efdd400027c1946?_method=DELETE" method="POST">
+                        <button class="btn btn-danger" type="submit">delete</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </li>
+</ul>
+
+<a href="#" class="btn btn-secondary d-flex justify-content-center mt-3">新增</a>

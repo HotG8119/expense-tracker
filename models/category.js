@@ -5,6 +5,10 @@ const categorySchema = new Schema({
     type: String,
     required: true,
   },
+  iconUrl: {
+    type: String,
+    required: true,
+  },
 });
 
-module.exports = mongoose.model("Category", recordSchema);
+module.exports = mongoose.model("Category", categorySchema);

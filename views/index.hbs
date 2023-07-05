@@ -16,6 +16,7 @@
 </div>
 
 <ul class="list-group">
+    {{!-- 標題 --}}
     <li class="list-group-item">
         <div class="row">
             <span class="col-1">類別</span>
@@ -26,21 +27,24 @@
         </div>
     </li>
 
+    {{!-- 顯示資料 --}}
+    {{#each records}}
     <li class="list-group-item">
         <div class="row">
             <!--類別icon-->
             <span class="col-1"><i class="fa-solid fa-grin-beam h5"></i></span>
             <!--項目-->
-            <span class="col-4 lead">GGGG</span>
+            <span class="col-4 lead">{{this.name}}</span>
             <!--日期-->
-            <span class="col-2">2023/07/07</span>
+
+            <span class="col-2">{{this.date}}</span>
             <!--金額-->
-            <span class="col-2 h4 text-info">99</span>
+            <span class="col-2 h4 text-info">{{this.amount}}</span>
             <!--操作-->
             <div class="col-3">
                 <div class="d-flex justify-content-around">
-                    <a class="btn btn-success" href="/records/64a41c924efdd400027c1946/edit">修改</a>
-                    <form action="/records/64a41c924efdd400027c1946?_method=DELETE" method="POST">
+                    <a class="btn btn-success" href="/records/{{_id}}/edit">修改</a>
+                    <form action="/records/{{_id}}?_method=DELETE" method="POST">
                         <button class="btn btn-danger" type="submit">刪除</button>
                     </form>
                 </div>
@@ -48,29 +52,8 @@
 
         </div>
     </li>
+    {{/each}}
 
-    <li class="list-group-item">
-        <div class="row">
-            <!--類別icon-->
-            <span class="col-1"><i class="fa-solid fa-grin-beam h5"></i></span>
-            <!--項目-->
-            <span class="col-4 lead">GGGG</span>
-            <!--日期-->
-            <span class="col-2">2023/07/07</span>
-            <!--金額-->
-            <span class="col-2 h4 text-info">99</span>
-            <!--操作-->
-            <div class="col-3">
-                <div class="d-flex justify-content-around">
-                    <a class="btn btn-success" href="/records/64a41c924efdd400027c1946/edit">edit</a>
-                    <form action="/records/64a41c924efdd400027c1946?_method=DELETE" method="POST">
-                        <button class="btn btn-danger" type="submit">delete</button>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-    </li>
 </ul>
 
-<a href="#" class="btn btn-secondary d-flex justify-content-center mt-3">新增</a>
+<a href="/records/new" class="btn btn-secondary d-flex justify-content-center mt-3">新增</a>

@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const Record = require("./models/record");
+const Category = require("./models/category");
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
@@ -14,6 +15,7 @@ const port = 3000;
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 });
 
 app.engine("hbs", exphbs({ defaultLayout: "main", extname: ".hbs" }));
@@ -31,17 +33,23 @@ db.once("open", () => {
 });
 
 app.get("/", (req, res) => {
+  let totalAmount = 0;
   Record.find()
     .lean()
     .then(records => {
       records.forEach(record => {
-        record.date = record.date.toLocaleDateString("en-US");
+        //轉換日期格式
+        const date = record.date.toISOString().slice(0, 10);
+        record.date = date;
+        //加總金額
+        totalAmount += record.amount;
       });
-      res.render("index", { records });
+      res.render("index", { records, totalAmount });
     })
     .catch(err => console.log(err));
 });
 
+//create
 app.get("/records/new", (req, res) => {
   res.render("new");
 });
@@ -58,8 +66,33 @@ app.post("/records", (req, res) => {
     .catch(err => console.log(err));
 });
 
-app.get("/new", (req, res) => {
-  res.render("new");
+//edit
+app.get("/records/:id/edit", (req, res) => {
+  const id = req.params.id;
+  return Record.findById(id)
+    .lean()
+    .sort({ date: "desc" })
+    .then(record => {
+      //轉換日期格式
+      const date = record.date.toISOString().slice(0, 10);
+      record.date = date;
+      res.render("edit", { record });
+    })
+    .catch(err => console.log(err));
+});
+
+app.post("/records/:id/edit", (req, res) => {
+  const id = req.params.id;
+  const updatedRecord = {
+    name: req.body.name,
+    category: req.body.category,
+    date: req.body.date,
+    amount: req.body.amount,
+  };
+
+  return Record.findByIdAndUpdate(id, updatedRecord)
+    .then(() => res.redirect("/"))
+    .catch(err => console.log(err));
 });
 
 app.listen(port, () => {

@@ -11,7 +11,7 @@
     </div>
 
     <div id="totalAmount">
-        <h3>總金額： 8787 元</h3>
+        <h3>總金額： {{totalAmount}} 元</h3>
     </div>
 </div>
 
@@ -32,19 +32,19 @@
     <li class="list-group-item">
         <div class="row">
             <!--類別icon-->
-            <span class="col-1"><i class="fa-solid fa-grin-beam h5"></i></span>
+            <span class="col-1">{{this.category}}</i></span>
             <!--項目-->
             <span class="col-4 lead">{{this.name}}</span>
             <!--日期-->
 
             <span class="col-2">{{this.date}}</span>
             <!--金額-->
-            <span class="col-2 h4 text-info">{{this.amount}}</span>
+            <span class="col-2 h4 text-info" id="amount">{{this.amount}}</span>
             <!--操作-->
             <div class="col-3">
                 <div class="d-flex justify-content-around">
-                    <a class="btn btn-success" href="/records/{{_id}}/edit">修改</a>
-                    <form action="/records/{{_id}}?_method=DELETE" method="POST">
+                    <a class="btn btn-success" href="/records/{{this._id}}/edit">修改</a>
+                    <form action="/records/{{this._id}}?_method=DELETE" method="POST">
                         <button class="btn btn-danger" type="submit">刪除</button>
                     </form>
                 </div>

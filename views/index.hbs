@@ -92,7 +92,7 @@
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <form action="/records/{{this._id}}/delete" method="POST">
+                    <form action="/records/{{this._id}}/delete?_method=DELETE" method="POST">
                         <button type="submit" class="btn btn-danger">刪除</button>
                     </form>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -106,4 +106,4 @@
 
 </ul>
 
-<a href="/records/new" class="btn btn-secondary d-flex justify-content-center mt-3">新增</a>
+<a href="/records/add" class="btn btn-secondary d-flex justify-content-center mt-3">新增</a>

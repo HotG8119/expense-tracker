@@ -1,18 +1,23 @@
-<div class="d-flex justify-content-between">
-    <div>
-        <label for="category">類別：</label>
-        <select id="category">
-            <option value="housing">家居</option>
-            <option value="transportation">交通</option>
-            <option value="leisure">休閒</option>
-            <option value="food">餐飲</option>
-            <option value="other">其他</option>
-        </select>
-    </div>
+{{!-- category select --}}
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        選擇類別
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="/">全部</a></li>
+        <li><a class="dropdown-item" href="/category/housing">家居</a></li>
+        <li><a class="dropdown-item" href="/category/transportation">交通</a></li>
+        <li><a class="dropdown-item" href="/category/leisure">休閒</a></li>
+        <li><a class="dropdown-item" href="/category/food">餐飲</a></li>
+        <li><a class="dropdown-item" href="/category/other">其他</a></li>
+    </ul>
 
-    <div id="totalAmount">
-        <h3>總金額： {{totalAmount}} 元</h3>
-    </div>
+</div>
+
+<div id="totalAmount">
+    <h3>{{#if categoryBy}}{{categoryBy}} 的{{/if}}總金額： {{totalAmount}} 元</h3>
+</div>
 </div>
 
 <ul class="list-group">

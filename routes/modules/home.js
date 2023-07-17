@@ -21,4 +21,26 @@ router.get("/", (req, res) => {
     .catch(err => console.log(err));
 });
 
+router.get("/category/:categoryBy", (req, res) => {
+  const categoryBy = req.params.categoryBy;
+  let totalAmount = 0;
+
+  Record.find({ category: categoryBy })
+    .lean()
+    .then(records => {
+      records.forEach(record => {
+        //轉換日期格式
+        const date = record.date.toISOString().slice(0, 10);
+        record.date = date;
+        //加總金額
+        totalAmount += record.amount;
+      });
+
+      res.render("index", { records, categoryBy, totalAmount });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 module.exports = router;

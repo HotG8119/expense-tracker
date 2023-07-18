@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 // setting mongoose
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();

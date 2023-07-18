@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 
 const routes = require("./routes");
 
+const usePassport = require("./config/passport");
 require("./config/mongoose");
 
 const app = express();
@@ -16,6 +17,8 @@ app.set("view engine", "hbs");
 // setting static files
 app.use(express.static("public"), express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+
+usePassport(app);
 
 app.use(routes);
 

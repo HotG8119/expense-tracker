@@ -9,14 +9,10 @@ router.get("/add", (req, res) => {
 });
 
 router.post("/add", (req, res) => {
-  const record = Record({
-    name: req.body.name,
-    category: req.body.category,
-    date: req.body.date,
-    amount: req.body.amount,
-  });
+  const userId = req.user._id;
+  const { name, amount, category } = req.body;
 
-  return Record.create(record)
+  return Record.create({ name, amount, category, userId })
     .then(() => res.redirect("/"))
     .catch(err => console.log(err));
 });

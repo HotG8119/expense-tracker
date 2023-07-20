@@ -4,9 +4,10 @@ const router = express.Router();
 const Record = require("../../models/record");
 
 router.get("/", (req, res) => {
+  const userId = req.user._id;
   let totalAmount = 0;
 
-  Record.find()
+  Record.find({ userId })
     .lean()
     .then(records => {
       records.forEach(record => {
@@ -22,10 +23,11 @@ router.get("/", (req, res) => {
 });
 
 router.get("/category/:categoryBy", (req, res) => {
+  const userId = req.user._id;
   const categoryBy = req.params.categoryBy;
   let totalAmount = 0;
 
-  Record.find({ category: categoryBy })
+  Record.find({ category: categoryBy, userId })
     .lean()
     .then(records => {
       records.forEach(record => {

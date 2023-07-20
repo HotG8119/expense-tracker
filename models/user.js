@@ -17,9 +17,6 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  userId: {
-    type: Number,
-  },
 });
 
 module.exports = mongoose.model("User", userSchema);

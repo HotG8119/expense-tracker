@@ -1,22 +1,22 @@
 [
   {
     "name": "housing",
-    "iconUrl": "https://fontawesome.com/icons/home?style=solid"
+    "icon": "fas fa-home"
   },
   {
     "name": "transportation",
-    "iconUrl": "https://fontawesome.com/icons/shuttle-van?style=solid"
+    "icon": "fas fa-shuttle-van"
   },
   {
     "name": "leisure",
-    "iconUrl": "https://fontawesome.com/icons/grin-beam?style=solid"
+    "icon": "fas fa-grin-beam"
   },
   {
     "name": "food",
-    "iconUrl": "https://fontawesome.com/icons/utensils?style=solid"
+    "icon": "fas fa-utensils"
   },
   {
     "name": "other",
-    "iconUrl": "https://fontawesome.com/icons/pen?style=solid"
+    "icon": "fas fa-pen"
   }
 ]

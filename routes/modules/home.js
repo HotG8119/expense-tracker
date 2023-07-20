@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const Record = require("../../models/record");
+const Category = require("../../models/category");
 
 router.get("/", (req, res) => {
   const userId = req.user._id;
@@ -10,16 +11,27 @@ router.get("/", (req, res) => {
   Record.find({ userId })
     .lean()
     .then(records => {
-      records.forEach(record => {
-        //轉換日期格式
-        const date = record.date.toISOString().slice(0, 10);
-        record.date = date;
-        //加總金額
-        totalAmount += record.amount;
-      });
-      res.render("index", { records, totalAmount });
+      Category.find()
+        .lean()
+        .then(categories => {
+          //加入圖示
+          records.forEach(record => {
+            categories.forEach(category => {
+              if (category.name === record.category) {
+                record.icon = category.icon;
+              }
+            });
+            //轉換日期格式
+            record.date = record.date.toISOString().slice(0, 10);
+            //加總金額
+            totalAmount += record.amount;
+          });
+
+          res.render("index", { records, totalAmount });
+        })
+        .catch(error => console.error(error));
     })
-    .catch(err => console.log(err));
+    .catch(error => console.error(error));
 });
 
 router.get("/category/:categoryBy", (req, res) => {
@@ -30,19 +42,27 @@ router.get("/category/:categoryBy", (req, res) => {
   Record.find({ category: categoryBy, userId })
     .lean()
     .then(records => {
-      records.forEach(record => {
-        //轉換日期格式
-        const date = record.date.toISOString().slice(0, 10);
-        record.date = date;
-        //加總金額
-        totalAmount += record.amount;
-      });
+      Category.find()
+        .lean()
+        .then(categories => {
+          //加入圖示
+          records.forEach(record => {
+            categories.forEach(category => {
+              if (category.name === record.category) {
+                record.icon = category.icon;
+              }
+            });
+            //轉換日期格式
+            record.date = record.date.toISOString().slice(0, 10);
+            //加總金額
+            totalAmount += record.amount;
+          });
 
-      res.render("index", { records, categoryBy, totalAmount });
+          res.render("index", { records, categoryBy, totalAmount });
+        })
+        .catch(error => console.error(error));
     })
-    .catch(err => {
-      console.log(err);
-    });
+    .catch(error => console.error(error));
 });
 
 module.exports = router;

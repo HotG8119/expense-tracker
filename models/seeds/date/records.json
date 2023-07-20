@@ -1,38 +1,32 @@
 [
   {
-    "name": "早餐",
-    "date": "2018-01-01",
-    "amount": 20,
-    "category": "food"
+    "name": "午餐",
+    "date": "2019/4/23",
+    "amount": "60",
+    "category": "餐飲食品"
+  },
+  {
+    "name": "晚餐",
+    "date": "2019-4-23",
+    "amount": "60",
+    "category": "餐飲食品"
   },
   {
     "name": "捷運",
-    "date": "2022-01-06",
-    "amount": 80,
-    "category": "transportation"
+    "date": "2019-4-23",
+    "amount": "120",
+    "category": "交通出行"
   },
   {
-    "name": "家具",
-    "date": "2012-06-06",
-    "amount": 25000,
-    "category": "housing"
+    "name": "電影：驚奇隊長",
+    "date": "2019-4-23",
+    "amount": "220",
+    "category": "休閒娛樂"
   },
   {
-    "name": "電影",
-    "date": "2020-12-25",
-    "amount": 300,
-    "category": "leisure"
-  },
-  {
-    "name": "保險",
-    "date": "2021-01-06",
-    "amount": 2000,
-    "category": "other"
-  },
-  {
-    "name": "午餐",
-    "date": "2018-01-01",
-    "amount": 890,
-    "category": "餐飲食品"
+    "name": "租金",
+    "date": "2015-4-01",
+    "amount": "25000",
+    "category": "家居物業"
   }
 ]

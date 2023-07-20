@@ -1,0 +1,22 @@
+[
+  {
+    "name": "housing",
+    "iconUrl": "https://fontawesome.com/icons/home?style=solid"
+  },
+  {
+    "name": "transportation",
+    "iconUrl": "https://fontawesome.com/icons/shuttle-van?style=solid"
+  },
+  {
+    "name": "leisure",
+    "iconUrl": "https://fontawesome.com/icons/grin-beam?style=solid"
+  },
+  {
+    "name": "food",
+    "iconUrl": "https://fontawesome.com/icons/utensils?style=solid"
+  },
+  {
+    "name": "other",
+    "iconUrl": "https://fontawesome.com/icons/pen?style=solid"
+  }
+]

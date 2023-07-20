@@ -69,7 +69,10 @@ router.post("/register", (req, res) => {
       .genSalt(10)
       .then(salt => bcrypt.hash(password, salt))
       .then(hash => User.create({ name, email, password: hash }))
-      .then(() => res.redirect("/"))
+      .then(() => {
+        req.flash("success_msg", "你已經成功註冊。");
+        res.redirect("/");
+      })
       .catch(err => console.log(err));
   });
 });

@@ -6,17 +6,26 @@ const bcrypt = require("bcryptjs");
 const User = require("../../models/user");
 
 router.get("/login", (req, res) => {
-  res.render("login");
+  const userInput = req.session.userInput || {};
+
+  delete req.session.userInput;
+
+  res.render("login", { email: userInput.email, password: userInput.password });
 });
 
 router.post(
   "/login",
+  (req, res, next) => {
+    const { email, password } = req.body;
+
+    req.session.userInput = { email, password };
+    next();
+  },
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/users/login",
   })
 );
-
 router.get("/register", (req, res) => {
   res.render("register");
 });
@@ -26,7 +35,7 @@ router.post("/register", (req, res) => {
   const errors = [];
 
   //提示使用者填寫資料
-  if (!email || !password || !confirmPassword) {
+  if (!name || !email || !password || !confirmPassword) {
     errors.push({ message: "這些欄位都是必填。" });
   }
   if (password !== confirmPassword) {
@@ -67,6 +76,7 @@ router.post("/register", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.logout();
+  req.flash("success_msg", "你已經成功登出。");
   res.redirect("/users/login");
 });
 

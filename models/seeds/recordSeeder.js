@@ -15,30 +15,33 @@ db.on('error', () => {
 })
 
 db.once('open', () => {
-  for (const [index, SEED_USER] of SEED_USERS.entries()) {
-    bcrypt
-      .genSalt(10)
-      .then(salt => bcrypt.hash(SEED_USER.password, salt))
-      .then(hash =>
-        User.create({
-          name: SEED_USER.name,
-          email: SEED_USER.email,
-          password: hash
-        })
-      )
-      .then(user => {
-        const userId = user._id
+  return Promise.all(
+    SEED_USERS.map(SEED_USER => {
+      return bcrypt
+        .genSalt(10)
+        .then(salt => bcrypt.hash(SEED_USER.password, salt))
+        .then(hash =>
+          User.create({
+            name: SEED_USER.name,
+            email: SEED_USER.email,
+            password: hash
+          })
+        )
+        .then(user => {
+          const userId = user._id
 
-        const record = SEED_USER.recordId.map(index => {
-          SEED_RECORDS[index].userId = userId
-          return SEED_RECORDS[index]
+          const record = SEED_USER.recordId.map(index => {
+            SEED_RECORDS[index].userId = userId
+            return SEED_RECORDS[index]
+          })
+
+          console.log(`create ${user.name}'s record done`)
+          return Record.create(record)
         })
-        console.log(`第${index + 1}筆使用者資料建立完成`)
-        return Record.create(record)
-      })
-      .then(() => {
-        console.log('done')
-        process.exit()
-      })
-  }
+        .then(() => {
+          console.log('done')
+          process.exit()
+        })
+    })
+  )
 })

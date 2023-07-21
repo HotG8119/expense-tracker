@@ -41,6 +41,7 @@ router.get("/category/:categoryBy", (req, res) => {
   let totalAmount = 0;
 
   Record.find({ category: categoryBy, userId })
+    .sort({ date: -1 })
     .lean()
     .then(records => {
       Category.find()

@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
   let totalAmount = 0;
 
   Record.find({ userId })
+    .sort({ date: -1 })
     .lean()
     .then(records => {
       Category.find()

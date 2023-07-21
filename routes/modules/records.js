@@ -11,7 +11,7 @@ router.get("/add", (req, res) => {
 router.post("/add", (req, res) => {
   const userId = req.user._id;
   const { name, date, amount, category } = req.body;
-  console.log(req.body);
+
   return Record.create({ name, date, amount, category, userId })
     .then(() => res.redirect("/"))
     .catch(err => console.log(err));
